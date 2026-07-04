@@ -260,14 +260,14 @@
       { char: "十", on: "ジュウ",       kun: "とお",       meaning: "ten" },
       { char: "百", on: "ヒャク",       kun: "もも",       meaning: "hundred" },
       { char: "千", on: "セン",         kun: "ち",         meaning: "thousand" },
-      { char: "万", on: "マン・バン",   kun: "よろず",     meaning: "ten-thousand" },
+      { char: "万", on: "マン・バン",   kun: "よろず",     meaning: "ten thousand" },
       { char: "円", on: "エン",         kun: "まる",       meaning: "yen / circle" },
       { char: "年", on: "ネン",         kun: "とし",       meaning: "year" },
       { char: "月", on: "ゲツ・ガツ",   kun: "つき",       meaning: "month / moon" },
       { char: "日", on: "ニチ・ジツ",   kun: "ひ・か",     meaning: "day / sun" },
       { char: "時", on: "ジ",           kun: "とき",       meaning: "time / hour" },
       { char: "分", on: "フン・ブン",   kun: "わ・い",     meaning: "minute / part" },
-      { char: "半", on: "ハン",         kun: "なか",       meaning: "half" },
+      { char: "半", on: "ハン",         kun: "なか(ば)",   meaning: "half" },
       { char: "今", on: "コン・キン",   kun: "いま",       meaning: "now" },
       { char: "前", on: "ゼン",         kun: "まえ",       meaning: "before / front" },
       { char: "後", on: "ゴ・コウ",     kun: "あと・うし", meaning: "after / back" },
@@ -326,8 +326,8 @@
       { char: "語", on: "ゴ",           kun: "かた",       meaning: "language / word" },
       { char: "何", on: "カ",           kun: "なに・なん", meaning: "what" },
       { char: "気", on: "キ・ケ",       kun: "—",          meaning: "spirit / feeling" },
-      { char: "天", on: "テン",         kun: "あめ・あま", meaning: "heaven / sky" },
-      { char: "雨", on: "ウ",           kun: "あめ・あま", meaning: "rain" },
+      { char: "天", on: "テン",         kun: "あま・あめ", meaning: "heaven / sky" },
+      { char: "雨", on: "ウ",           kun: "あめ",       meaning: "rain" },
     ],
     n4: [
       { char: "開", on: "カイ",         kun: "ひら・あ",   meaning: "open" },
@@ -379,7 +379,7 @@
       { char: "紙", on: "シ",           kun: "かみ",       meaning: "paper" },
       { char: "文", on: "ブン・モン",   kun: "ふみ",       meaning: "text / writing" },
       { char: "字", on: "ジ",           kun: "あざ",       meaning: "character / letter" },
-      { char: "漢", on: "カン",         kun: "おとこ",     meaning: "Chinese / kanji" },
+      { char: "漢", on: "カン",         kun: "—",          meaning: "Chinese / kanji" },
       { char: "英", on: "エイ",         kun: "—",          meaning: "English / brilliant" },
       { char: "声", on: "セイ・ショウ", kun: "こえ",       meaning: "voice / sound" },
       { char: "音", on: "オン・イン",   kun: "おと・ね",   meaning: "sound" },
@@ -399,7 +399,7 @@
       { char: "朝", on: "チョウ",       kun: "あさ",       meaning: "morning" },
       { char: "昼", on: "チュウ",       kun: "ひる",       meaning: "noon / daytime" },
       { char: "夜", on: "ヤ",           kun: "よ・よる",   meaning: "night / evening" },
-      { char: "午", on: "ゴ",           kun: "—",          meaning: "noon (12 o'clock)" },
+      { char: "午", on: "ゴ",           kun: "—",          meaning: "noon" },
       { char: "毎", on: "マイ",         kun: "—",          meaning: "every / each" },
       { char: "家", on: "カ・ケ",       kun: "いえ・や",   meaning: "house / home / family" },
       { char: "門", on: "モン",         kun: "かど",       meaning: "gate" },
@@ -462,7 +462,12 @@
   }
 
   function escHtml(str) {
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 
   /* ── Event wiring ───────────────────────────────────────── */
