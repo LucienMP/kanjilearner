@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanji Study &amp; Review</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="topbar">
+  <button id="menuBtn" aria-label="Open grade menu" aria-expanded="false" aria-controls="gradeDrawer">
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  </button>
+  <h1 id="siteTitle">Kanji Study &amp; Review</h1>
+
+  <div class="control">
+    <label for="questionCount">Questions</label>
+    <div class="qcWrap">
+      <input type="text" id="questionCount" value="20" inputmode="numeric" autocomplete="off">
+      <button type="button" id="qcToggle" aria-label="Show quick picks">&#9662;</button>
+      <div id="qcMenu" class="qcMenu" hidden></div>
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="studyStyle">Study style</label>
+    <select id="studyStyle">
+      <option value="worksheet">Kanji &rarr; write readings</option>
+      <option value="trace">Reading &rarr; trace kanji &times;10</option>
+      <option value="flashcards">Fold flashcards</option>
+    </select>
+  </div>
+
+  <div class="control" id="answerKeyControl">
+    <label for="answerKeyMode">Answer key</label>
+    <select id="answerKeyMode">
+      <option value="none" selected>Hidden</option>
+      <option value="below">Show below</option>
+      <option value="page">Show on new page</option>
+    </select>
+  </div>
+
+  <div class="control checkControl" id="showKanjiControl">
+    <label for="showKanjiToggle">&nbsp;</label>
+    <label class="inlineCheck"><input type="checkbox" id="showKanjiToggle"> Show kanji in box 1</label>
+  </div>
+
+  <div class="control checkControl" id="exampleWordsControl">
+    <label for="exampleWordsToggle">&nbsp;</label>
+    <label class="inlineCheck"><input type="checkbox" id="exampleWordsToggle"> Include example words</label>
+  </div>
+
+  <button id="generateBtn">Generate</button>
+  <button id="printBtn">Print</button>
+</header>
+
+<div id="overlay"></div>
+
+<nav id="gradeDrawer" aria-hidden="true">
+  <div class="drawerHead">
+    <h2>Kanji Grade</h2>
+    <button id="closeDrawer" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="drawerBody">
+    <label class="gradeOption" data-grade="1"><input type="checkbox" value="1" checked><span>Grade 1</span><small></small></label>
+    <label class="gradeOption" data-grade="2"><input type="checkbox" value="2"><span>Grade 2</span><small></small></label>
+    <label class="gradeOption" data-grade="3"><input type="checkbox" value="3"><span>Grade 3</span><small></small></label>
+    <label class="gradeOption" data-grade="4"><input type="checkbox" value="4"><span>Grade 4</span><small></small></label>
+    <label class="gradeOption" data-grade="5"><input type="checkbox" value="5"><span>Grade 5</span><small></small></label>
+    <label class="gradeOption" data-grade="6"><input type="checkbox" value="6"><span>Grade 6</span><small></small></label>
+  </div>
+  <div class="drawerFoot">
+    <button id="managePrefsBtn">Manage Kanji</button>
+  </div>
+  <div class="drawerFoot">
+    <button id="selectAllGrades">Select all</button>
+    <button id="clearGrades">Clear</button>
+  </div>
+</nav>
+
+<div id="prefsOverlay" class="modalOverlay" hidden></div>
+<div id="prefsDialog" class="modalDialog" hidden aria-hidden="true">
+  <div class="modalHead">
+    <h2>Manage Kanji</h2>
+    <div class="authStatus">
+      <button id="signInBtn">Sign in with Google</button>
+      <button id="signOutBtn" hidden>Sign out</button>
+      <span id="signedInAs" hidden></span>
+    </div>
+    <button id="closePrefsDialog" aria-label="Close">&times;</button>
+  </div>
+  <div class="modalBody">
+    <p class="prefsHint">Set how often each kanji should be included when you click Generate &mdash; drag to 0 to exclude it entirely, or up to 5 to make it appear more often. Preferences save to this browser automatically, and sync across devices once you sign in.</p>
+    <section class="overridesSection">
+      <h3>Your overrides</h3>
+      <div id="overridesList" class="overridesList"></div>
+    </section>
+    <section class="gradeSection">
+      <h3>All kanji by grade</h3>
+      <div id="gradeAccordion"></div>
+    </section>
+  </div>
+</div>
+<datalist id="weightTicks">
+  <option value="0"></option>
+  <option value="1"></option>
+  <option value="2"></option>
+  <option value="3"></option>
+  <option value="4"></option>
+  <option value="5"></option>
+</datalist>
+
+<main id="content">
+  <p id="emptyState">Choose a grade from the menu, pick a study style, then click <strong>Generate</strong> to create a printable worksheet.</p>
+  <div id="sheet"></div>
+</main>
+
+<script src="kanji-data.js"></script>
+<script src="kanji-svg.js"></script>
+<script src="kanji-examples.js"></script>
+<script src="kanji-prefs.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="firebase-sync.js"></script>
+
+<script src="app.js"></script>
+</body>
+</html>
